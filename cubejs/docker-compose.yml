@@ -1,0 +1,25 @@
+# Copyright The Linux Foundation and each contributor to LFX.
+# SPDX-License-Identifier: MIT
+
+version: "2.2"
+
+services:
+  cube:
+    image: cubejs/cube:dev
+    ports:
+      # It's better to use random port binding for 4000/3000 ports
+      # without it you will not able to start multiple projects inside docker
+      - 4000:4000 # Cube API and Developer Playground
+      - 15432:5432 # Postgres port
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - CUBEJS_DEV_MODE=true
+      - CUBEJS_PG_SQL_PORT=5432
+      - CUBEJS_SQL_USER=username
+      - CUBEJS_SQL_PASSWORD=password
+    volumes:
+      - .:/cube/conf
+      # We ignore Cube deps, because they are built-in inside the official Docker image
+      - .empty:/cube/conf/node_modules/@cubejs-backend/

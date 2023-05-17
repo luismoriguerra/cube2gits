@@ -1,0 +1,25 @@
+{
+  "name": "cubejs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start:cli": "cubejs-server",
+    "start:docker": "docker compose up",
+    "start": "yarn start:docker",
+    "clean": "rm -rf .cubestore .empty .turbo node_modules",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll"
+  },
+  "template": "docker",
+  "templateVersion": "0.32.8",
+  "devDependencies": {
+    "@cubejs-backend/postgres-driver": "^0.32.8",
+    "@cubejs-backend/server": "^0.32.8",
+    "@cubejs-backend/redshift-driver": "^0.32.8",
+    "jest": "^29.4.3",
+    "@apollo/client": "^3.7.14",
+    "cross-fetch": "^3.1.5",
+    "graphql": "^16.6.0"
+  }
+}
